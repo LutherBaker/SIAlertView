@@ -70,6 +70,7 @@ static SIAlertView *__si_alert_current_view;
         return;
     
     SIAlertView *appearance = [self appearance];
+    appearance.alertBackgroundColor = [UIColor whiteColor];
     appearance.titleColor = [UIColor blackColor];
     appearance.messageColor = [UIColor darkGrayColor];
     appearance.titleFont = [UIFont boldSystemFontOfSize:20];
@@ -715,7 +716,7 @@ static SIAlertView *__si_alert_current_view;
 - (void)setupContainerView
 {
     self.containerView = [[UIView alloc] initWithFrame:self.bounds];
-    self.containerView.backgroundColor = [UIColor whiteColor];
+    self.containerView.backgroundColor = self.alertBackgroundColor;
     self.containerView.layer.cornerRadius = self.cornerRadius;
     self.containerView.layer.shadowOffset = CGSizeZero;
     self.containerView.layer.shadowRadius = self.shadowRadius;
@@ -797,6 +798,16 @@ static SIAlertView *__si_alert_current_view;
 }
 
 #pragma mark - UIAppearance setters
+
+- (void)setAlertBackgroundColor:(UIColor *)alertBackgroundColor
+{
+    if(_alertBackgroundColor == alertBackgroundColor) {
+        return;
+    }
+    _alertBackgroundColor = alertBackgroundColor;
+    self.containerView.backgroundColor = alertBackgroundColor;
+    [self invalidateLayout];
+}
 
 - (void)setTitleFont:(UIFont *)titleFont
 {
