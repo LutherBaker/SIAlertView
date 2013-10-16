@@ -37,6 +37,7 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
+
     switch (self.style) {
         case SIAlertViewBackgroundStyleGradient:
         {
@@ -51,15 +52,22 @@
             CGFloat radius = MIN(self.bounds.size.width, self.bounds.size.height) ;
             CGContextDrawRadialGradient (context, gradient, center, 0, center, radius, kCGGradientDrawsAfterEndLocation);
             CGGradientRelease(gradient);
-            break;
         }
+            break;
         case SIAlertViewBackgroundStyleSolid:
         {
-            [[UIColor colorWithWhite:0 alpha:0.5] set];
+            CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:0.0f alpha:0.5f].CGColor);
             CGContextFillRect(context, self.bounds);
+        }
             break;
+        case SIAlertViewBackgroundStyleClear:
+        {
+            CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
+            CGContextFillRect(context, self.bounds);
         }
     }
+
+    [super drawRect:rect];
 }
 
 @end
