@@ -610,7 +610,9 @@ static SIAlertView *__si_alert_current_view;
                     if (i == self.buttons.count - 1) {
                         id last = [self.buttons lastObject];
                         
-                        if(((SIAlertButton *)last).type == SIAlertViewButtonTypeCancel) {
+                        if([last isKindOfClass:[SIAlertButton class]]
+                           && ((SIAlertButton *)last).type == SIAlertViewButtonTypeCancel) {
+
                             CGRect rect = button.frame;
                             rect.origin.y += CANCEL_BUTTON_PADDING_TOP;
                             button.frame = rect;
@@ -652,7 +654,8 @@ static SIAlertView *__si_alert_current_view;
             if (self.buttons.count > 2) {
                 id last = [self.buttons lastObject];
                 
-                if(((SIAlertButton *)last).type == SIAlertViewButtonTypeCancel) {
+                if([last isKindOfClass:[SIAlertButton class]]
+                   && ((SIAlertButton *)last).type == SIAlertViewButtonTypeCancel) {
                     height += CANCEL_BUTTON_PADDING_TOP;
                 }
             }
