@@ -22,6 +22,15 @@
 {
     [super loadView];
     self.view = self.alertView;
+
+    // iOS 6
+    self.wantsFullScreenLayout = YES;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 - (void)viewDidLoad
