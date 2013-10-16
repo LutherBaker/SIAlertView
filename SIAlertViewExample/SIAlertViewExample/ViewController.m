@@ -101,11 +101,11 @@
                                                         message:@"This is a custom alert where the buttons are drawn via CoreGraphics. It looks really nice, huh?"];
 
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [btn setTitle:@"Custom Button" forState:UIControlStateNormal];
+    [btn setTitle:@"Custom Button #1" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(customButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [alertView addCustomButton:btn];
-
+    
     [alertView addAlertButtonWithTitle:@"Cancel"
                                   type:SIAlertViewButtonTypeDanger
                                handler:^(SIAlertView *alertView) {
@@ -117,13 +117,21 @@
                                    NSLog(@"OK Clicked");
                                }];
 
+    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btn2 setTitle:@"Custom Button #2" forState:UIControlStateNormal];
+    [btn2 addTarget:self action:@selector(customButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    [alertView addCustomButton:btn2];
+
     alertView.titleColor = [UIColor colorWithHue:3.0f/360.0f saturation:0.76f brightness:0.88f alpha:1.0f];
     alertView.messageColor = [UIColor colorWithWhite:0.35f alpha:0.8f];
     alertView.messageFont = [UIFont systemFontOfSize:16.0f];
     alertView.cornerRadius = 5.0f;
     alertView.buttonFont = [UIFont boldSystemFontOfSize:16.0f];
     alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
-    
+    alertView.backgroundStyle = SIAlertViewBackgroundStyleClear;
+    alertView.alertBackgroundColor = [UIColor lightGrayColor];
+
     alertView.willShowHandler = ^(SIAlertView *alertView) {
         NSLog(@"%@, willShowHandler2", alertView);
     };
